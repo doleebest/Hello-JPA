@@ -9,14 +9,17 @@ import java.util.Date;
 @Entity
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private Long id;
+    @Column(name = "USERNAME")
+    private String name;
 
-    @Column(name = "name", nullable = false, columnDefinition = "varchar(100) default 'EMPTY'")
-    private String username;
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
     public Member() {
     }
 
@@ -28,11 +31,19 @@ public class Member {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
