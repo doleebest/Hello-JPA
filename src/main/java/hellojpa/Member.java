@@ -46,5 +46,6 @@ public class Member {
 
     public void setTeam(Team team) {
         this.team = team;
+        team.getMembers().add(this); // 연관관계 편의 메소드. 양방향 모두 설정할 수 있도록. 실수 안하게!
     }
 }
