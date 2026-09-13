@@ -2,10 +2,6 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
-
 @Entity
 public class Member {
 
@@ -44,7 +40,7 @@ public class Member {
         return team;
     }
 
-    public void setTeam(Team team) {
+    public void changeTeam(Team team) {
         this.team = team;
         team.getMembers().add(this); // 연관관계 편의 메소드. 양방향 모두 설정할 수 있도록. 실수 안하게!
     }
