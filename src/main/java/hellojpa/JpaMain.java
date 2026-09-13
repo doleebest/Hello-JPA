@@ -14,10 +14,10 @@ public class JpaMain {
 
         try{
 
-            Member member1 = new Member(200L, "MEMBER200");
-            em.persist(member1);
+            Member member1 = em.find(Member.class, 150L);
+            member1.setName("aaa");
 
-            em.flush(); // 강제 호출
+            em.detach(member1);
 
             System.out.println("-------------");
 
