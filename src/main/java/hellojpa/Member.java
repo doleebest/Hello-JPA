@@ -14,6 +14,10 @@ public class Member {
     @ManyToOne
     @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false) // 읽기 전용
     private Team team;
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
     public Member() {
     }
 
