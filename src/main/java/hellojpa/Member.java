@@ -10,12 +10,9 @@ public class Member {
     @Column(name = "USERNAME")
     private String name;
 
-//    @Column(name = "TEAM_ID")
-//    private Long teamId;
-
     // 연관관계의 주인
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TEAM_ID")
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false) // 읽기 전용
     private Team team;
     public Member() {
     }
