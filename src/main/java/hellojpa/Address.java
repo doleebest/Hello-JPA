@@ -52,4 +52,7 @@ public class Address {
         Objects.equals(street, address.street) &&
         Objects.equals(zipcode, address.zipcode);
     }
+
+    @Override
+    public int hashCode() { return Objects.hash(city, street, zipcode);}
 }

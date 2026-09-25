@@ -34,7 +34,16 @@ public class JpaMain {
             System.out.println("-----");
             Member findMember = em.find(Member.class, member.getId());
 
+            // 값 타입 수정: 갈아끼우기
             findMember.setHomeAddress(new Address("newCity", "street","10000"));
+
+            // 컬렉션 타입 수정: string을 없애고 새로 추가
+            findMember.getFavoriteFoods().remove("chicken");
+            findMember.getFavoriteFoods().remove("koreanFood");
+
+            // 컬렉션 타입 수정: equals, hashcode 가 중요해지는 시점
+            findMember.getAddressHistory().remove(new Address("old1","street","10000"));
+            findMember.getAddressHistory().add(new Address("newnew1","street","10000"));
 
             tx.commit();
         } catch (Exception e){
