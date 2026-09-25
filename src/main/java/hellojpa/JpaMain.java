@@ -24,8 +24,8 @@ public class JpaMain {
             member.getFavoriteFoods().add("chicken");
             member.getFavoriteFoods().add("족발");
 
-            member.getAddressHistory().add(new Address("old1","street","10000"));
-            member.getAddressHistory().add(new Address("old2","street","10000"));
+            member.getAddressHistory().add(new AddressEntity(new Address("old1","street","10000")));
+            member.getAddressHistory().add(new AddressEntity(new Address("old2","street","10000")));
             em.persist(member);
 
             em.flush();
@@ -42,8 +42,8 @@ public class JpaMain {
             findMember.getFavoriteFoods().remove("koreanFood");
 
             // 컬렉션 타입 수정: equals, hashcode 가 중요해지는 시점
-            findMember.getAddressHistory().remove(new Address("old1","street","10000"));
-            findMember.getAddressHistory().add(new Address("newnew1","street","10000"));
+            findMember.getAddressHistory().remove(new AddressEntity(new Address("old1","street","10000")));
+            findMember.getAddressHistory().add(new AddressEntity(new Address("newnew1","street","10000")));
 
             tx.commit();
         } catch (Exception e){
