@@ -34,11 +34,7 @@ public class JpaMain {
             System.out.println("-----");
             Member findMember = em.find(Member.class, member.getId());
 
-
-            List<Address> addresses = findMember.getAddressHistory();
-            for (Address a : addresses){
-                System.out.println(a.getCity());
-            }
+            findMember.setHomeAddress(new Address("newCity", "street","10000"));
 
             tx.commit();
         } catch (Exception e){
