@@ -15,8 +15,8 @@ public class Member extends BaseEntity{
     private String name;
 
     // 연관관계의 주인
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false) // 읽기 전용
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "TEAM_ID")
     private Team team;
 
     @OneToOne
