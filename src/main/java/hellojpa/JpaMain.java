@@ -14,8 +14,6 @@ public class JpaMain {
 
         try{
 
-            em.clear();
-
             Address address = new Address("CITY", "STREET" ,"ZIPCODE");
 
             Member member = new Member();
@@ -23,11 +21,8 @@ public class JpaMain {
             member.setHomeAddress(address);
             em.persist(member);
 
-            Address address1 = new Address(address.getCity(), address.getCity(), address.getZipcode());
-            Member member2 = new Member();
-            member.setName("member2");
-            member.setHomeAddress(address1);
-            em.persist(member2);
+            Address address2 = new Address(address.getCity(), address.getStreet(), address.getZipcode());
+            member.setHomeAddress(address2); // 통으로 다 reset
 
 //            member.getHomeAddress().setCity("new new");
 
