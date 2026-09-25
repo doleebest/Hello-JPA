@@ -7,26 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Member extends BaseEntity{
+public class Member {
 
     @Id @GeneratedValue
     private Long id;
     @Column(name = "USERNAME")
     private String name;
 
-    // 연관관계의 주인
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
-
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
-
-    @OneToMany (mappedBy = "member")
-    private List<MemberProduct> memberProducts = new ArrayList<>();
-    public Member() {
-    }
+    @Embedded
+    private Period period;
+    @Embedded
+    private Address address;
 
     public Long getId() {
         return id;
@@ -44,32 +35,19 @@ public class Member extends BaseEntity{
         this.name = name;
     }
 
-    public Team getTeam() {
-        return team;
+    public Period getPeriod() {
+        return period;
     }
 
-    public void changeTeam(Team team) {
-        this.team = team;
-        team.getMembers().add(this); // 연관관계 편의 메소드. 양방향 모두 설정할 수 있도록. 실수 안하게!
+    public void setPeriod(Period period) {
+        this.period = period;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public Address getAddress() {
+        return address;
     }
 
-    public Locker getLocker() {
-        return locker;
-    }
-
-    public void setLocker(Locker locker) {
-        this.locker = locker;
-    }
-
-    public List<MemberProduct> getMemberProducts() {
-        return memberProducts;
-    }
-
-    public void setMemberProducts(List<MemberProduct> memberProducts) {
-        this.memberProducts = memberProducts;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
