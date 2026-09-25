@@ -29,8 +29,10 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            Member m = em.find(Member.class, member1.getId());
-            System.out.println("m="+ m.getTeam().getClass());
+            List<Member> members = em.createQuery("select m from Member m join fetch m.team", Member.class).getResultList();
+
+//            Member m = em.find(Member.class, member1.getId());
+//            System.out.println("m="+ m.getTeam().getClass());
 
             tx.commit();
         } catch (Exception e){
